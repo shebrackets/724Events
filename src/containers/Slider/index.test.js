@@ -41,4 +41,24 @@ describe("When slider is created", () => {
       "Oeuvre à la coopération entre le secteur public et le privé."
     );
   });
+
+  it("the events are displayed sorted by date, most recent first", async () => {
+    api.loadData = jest.fn().mockReturnValue(data);
+    const { container } = render(
+      <DataProvider>
+        <Slider />
+      </DataProvider>
+    );
+
+    const titles = await screen.findAllByRole("heading", { level: 3 });
+    expect(titles.map((title) => title.textContent)).toEqual([
+      "World Gaming Day",
+      "World economic forum",
+      "World Farming Day",
+    ]);
+
+    const firstSlide = container.querySelector(".SlideCard");
+    expect(firstSlide).toHaveClass("SlideCard--display");
+    expect(firstSlide).toHaveTextContent("World Gaming Day");
+  });
 });

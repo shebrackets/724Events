@@ -13,6 +13,31 @@ describe("When Form is created", () => {
   describe("and a click is triggered on the submit button", () => {
     it("the success message is displayed", async () => {
       render(<Home />);
+
+      const fields = await screen.findAllByTestId("field-testid");
+      fireEvent.change(fields[0], { target: { value: "Doe" } });
+      fireEvent.change(fields[1], { target: { value: "John" } });
+      fireEvent.change(fields[2], { target: { value: "john@doe.com" } });
+      fireEvent.change(fields[3], { target: { value: "Bonjour" } });
+
+      const collapseButtons = await screen.findAllByTestId(
+        "collapse-button-testid"
+      );
+      fireEvent(
+        collapseButtons[collapseButtons.length - 1],
+        new MouseEvent("click", {
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      fireEvent(
+        (await screen.findAllByText("Entreprise"))[0],
+        new MouseEvent("click", {
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+
       fireEvent(
         await screen.findByText("Envoyer"),
         new MouseEvent("click", {
