@@ -35,11 +35,23 @@ const Form = ({ onSuccess, onError }) => {
     [onSuccess, onError]
   );
   return (
-    <form key={formKey} onSubmit={sendContact}>
+    <form key={formKey} onSubmit={sendContact} data-cy="contact-form">
       <div className="row">
         <div className="col">
-          <Field placeholder="" label="Nom" name="lastName" required />
-          <Field placeholder="" label="Prénom" name="firstName" required />
+          <Field
+            placeholder=""
+            label="Nom"
+            name="lastName"
+            required
+            dataCy="contact-lastname"
+          />
+          <Field
+            placeholder=""
+            label="Prénom"
+            name="firstName"
+            required
+            dataCy="contact-firstname"
+          />
           <Select
             selection={["Personel", "Entreprise"]}
             onChange={() => null}
@@ -47,6 +59,7 @@ const Form = ({ onSuccess, onError }) => {
             type="large"
             titleEmpty
             name="contactType"
+            dataCy="contact-type"
           />
           <Field
             placeholder=""
@@ -54,11 +67,16 @@ const Form = ({ onSuccess, onError }) => {
             name="email"
             inputType="email"
             required
+            dataCy="contact-email"
           />
-          <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
+          <Button
+            type={BUTTON_TYPES.SUBMIT}
+            disabled={sending}
+            dataCy="contact-submit"
+          >
             {sending ? "En cours" : "Envoyer"}
           </Button>
-          {formError && <span>{formError}</span>}
+          {formError && <span data-cy="contact-error">{formError}</span>}
         </div>
         <div className="col">
           <Field
@@ -67,6 +85,7 @@ const Form = ({ onSuccess, onError }) => {
             name="message"
             type={FIELD_TYPES.TEXTAREA}
             required
+            dataCy="contact-message"
           />
         </div>
       </div>

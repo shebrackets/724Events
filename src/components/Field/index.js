@@ -14,6 +14,7 @@ const Field = ({
   placeholder,
   required,
   inputType,
+  dataCy,
 }) => {
   let component;
   switch (type) {
@@ -25,6 +26,7 @@ const Field = ({
           placeholder={placeholder}
           required={required}
           data-testid="field-testid"
+          data-cy={dataCy}
         />
       );
       break;
@@ -35,6 +37,7 @@ const Field = ({
           placeholder={placeholder}
           required={required}
           data-testid="field-testid"
+          data-cy={dataCy}
         />
       );
       break;
@@ -64,14 +67,16 @@ Field.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   inputType: PropTypes.string,
+  dataCy: PropTypes.string,
 };
- Field.defaultProps = {
-   label: "",
-   placeholder: "",
-   type: FIELD_TYPES.INPUT_TEXT,
-   name: "field-name",
-   required: false,
-   inputType: "text",
- }
+Field.defaultProps = {
+  label: "",
+  placeholder: "",
+  type: FIELD_TYPES.INPUT_TEXT,
+  name: "field-name",
+  required: false,
+  inputType: "text",
+  dataCy: "",
+}
 
 export default Field;

@@ -7,7 +7,7 @@ export const BUTTON_TYPES = {
   SUBMIT: 2,
 };
 
-const Button = ({ title, onClick, type, disabled, children }) => {
+const Button = ({ title, onClick, type, disabled, children, dataCy }) => {
   switch (type) {
     case BUTTON_TYPES.DEFAULT:
       return (
@@ -16,6 +16,7 @@ const Button = ({ title, onClick, type, disabled, children }) => {
           disabled={disabled}
           className="Button"
           data-testid="button-test-id"
+          data-cy={dataCy}
           onClick={onClick}
           title={title}
         >
@@ -29,6 +30,7 @@ const Button = ({ title, onClick, type, disabled, children }) => {
           className="Button"
           type="submit"
           data-testid="button-test-id"
+          data-cy={dataCy}
           value={children}
           onClick={onClick}
           title={title}
@@ -41,6 +43,7 @@ const Button = ({ title, onClick, type, disabled, children }) => {
           disabled={disabled}
           className="Button"
           data-testid="button-test-id"
+          data-cy={dataCy}
           onClick={onClick}
           title={title}
         >
@@ -49,6 +52,23 @@ const Button = ({ title, onClick, type, disabled, children }) => {
       );
   }
 };
+
+Button.propTypes = {
+  title: PropTypes.string,
+  onClick: PropTypes.func,
+  type: PropTypes.number,
+  disabled: PropTypes.bool,
+  children: PropTypes.node,
+  dataCy: PropTypes.string,
+};
+Button.defaultProps = {
+  disabled: false,
+  onClick: () => null,
+  type: BUTTON_TYPES.DEFAULT,
+  title: "",
+  children: null,
+  dataCy: "",
+}
 
 // eslint-disable-next-line react/no-typos
 Button.propTypes = {
